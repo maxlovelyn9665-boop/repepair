@@ -243,6 +243,75 @@ tbody tr[data-id]:hover{background:rgba(79,140,255,.1)}
 /* ═══════════════════════════════════════════════════════════
    9. RESPONSIVE + REDUCED MOTION
 ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   10. EXTRA FX · CANCEL · LINKS
+═══════════════════════════════════════════════════════════ */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes glowp{0%,100%{box-shadow:0 0 22px rgba(120,100,255,.5)}50%{box-shadow:0 0 40px rgba(168,85,247,.9)}}
+@keyframes sweep{to{transform:translateX(120%)}}
+@keyframes aur{to{background-position:300% 50%}}
+@keyframes glowtxt{50%{text-shadow:0 0 36px var(--c),0 0 8px var(--c)}}
+@keyframes blink{50%{opacity:.5}}
+#fxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:95}
+.bg:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(79,140,255,.07) 40%,rgba(168,85,247,.09) 55%,transparent 75%);background-size:300% 100%;animation:aur 16s linear infinite}
+.top h1{animation:shine 6s linear infinite}
+.brand .lg{animation:float 4s ease-in-out infinite,glowp 3s ease-in-out infinite}
+.nv .cn.hot{box-shadow:0 0 0 0 rgba(251,90,122,.7);animation:pulse 1.6s infinite}
+.nv:hover{transform:translateX(4px)}
+.nv.target{animation:beacon 1.4s infinite}
+.where .ar{animation:point 1s ease-in-out infinite}
+.pop.on .pc{animation:pop .4s}
+.k,.tc>div,.lk{transition:transform .25s,border-color .25s,box-shadow .25s}
+.k:hover,.tc>div:hover,.lk:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 26px -6px var(--c,#4f8cff)}
+.k b{animation:glowtxt 3s ease-in-out infinite}
+.donut{animation:glowp 4s ease-in-out infinite}
+.bt{position:relative;overflow:hidden}
+.bt:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%)}
+.bt:hover:before{animation:sweep .7s}
+.ab:hover{transform:translateY(-1px)}
+.late{animation:blink 1.4s infinite}
+tbody tr[data-id]{animation:rise .4s both}
+tbody tr[data-id]:nth-child(2){animation-delay:0.070s}
+tbody tr[data-id]:nth-child(3){animation-delay:0.105s}
+tbody tr[data-id]:nth-child(4){animation-delay:0.140s}
+tbody tr[data-id]:nth-child(5){animation-delay:0.175s}
+tbody tr[data-id]:nth-child(6){animation-delay:0.210s}
+tbody tr[data-id]:nth-child(7){animation-delay:0.245s}
+tbody tr[data-id]:nth-child(8){animation-delay:0.280s}
+tbody tr[data-id]:nth-child(9){animation-delay:0.315s}
+tbody tr[data-id]:nth-child(10){animation-delay:0.350s}
+tbody tr[data-id]:nth-child(11){animation-delay:0.385s}
+tbody tr[data-id]:nth-child(12){animation-delay:0.420s}
+
+/* FX toggle */
+.fxb .sw{width:34px;height:18px;border-radius:99px;background:rgba(255,255,255,.15);position:relative;flex-shrink:0;transition:.2s}
+.fxb .sw:after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.2s}
+.fxb.fxon .sw{background:var(--green)}
+.fxb.fxon .sw:after{left:18px}
+/* ปิดเอฟเฟกต์ทั้งหมด */
+html.nofx{scroll-behavior:auto}
+body.nofx *,body.nofx *:before,body.nofx *:after{animation:none!important;transition:none!important}
+body.nofx .bg{background:linear-gradient(#030617,#09133a 60%,#17285c)}
+body.nofx .bg canvas,body.nofx .bg:after,body.nofx #fxc,body.nofx .bt:before{display:none}
+body.nofx .nv:hover,body.nofx .k:hover,body.nofx .tc>div:hover,body.nofx .lk:hover,body.nofx .ab:hover{transform:none!important}
+/* cancel */
+.ab.cx{--c:#94a3b8}
+.bt.c{background:linear-gradient(135deg,#475569,#94a3b8);box-shadow:none}
+.chip.c{color:#94a3b8;border-color:rgba(148,163,184,.45)}
+/* links */
+.lkf{padding:20px;margin-bottom:14px}
+.lkf h3{margin:0 0 14px;font-size:15px;color:#cfe0ff}
+.lkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.lk{padding:16px;display:flex;flex-direction:column;gap:6px;--c:var(--blue);position:relative}
+.lk.pin{--c:var(--amber);border-color:rgba(251,191,36,.5)}
+.lk b{font-size:15px;word-break:break-word}
+.lk .u{font-size:12px;color:var(--blue);word-break:break-all}
+.lk p{margin:0;font-size:13px;color:var(--mu);white-space:pre-wrap;word-break:break-word}
+.lk .tag{align-self:flex-start;font-size:11px;padding:1px 10px;border-radius:99px;border:1px solid var(--ln);color:var(--mu)}
+.lk .acts{margin-top:auto;padding-top:8px}
+.lk a.ab{text-decoration:none;display:inline-block}
+.ab.op{--c:var(--blue)} .ab.cp{--c:var(--green)} .ab.pn{--c:var(--amber)} .ab.dl{--c:var(--red)}
+
 @media(max-width:900px){
   .app{grid-template-columns:1fr}
   .side{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:10px;gap:4px;border-right:0;border-bottom:1px solid var(--ln)}
@@ -258,6 +327,7 @@ tbody tr[data-id]:hover{background:rgba(79,140,255,.1)}
 
 <body>
 <div class="bg"><canvas id="sky"></canvas></div>
+<canvas id="fxc"></canvas>
 <div class="app">
 
   <!-- ══════════ SIDEBAR ══════════ -->
@@ -272,12 +342,17 @@ tbody tr[data-id]:hover{background:rgba(79,140,255,.1)}
     <button class="nv" data-v="late"><span class="ic">⏰</span><span>เคสล่าช้า</span><em class="cn hot" id="n-late"></em></button>
     <button class="nv" data-v="done"><span class="ic">✅</span><span>เคสที่ปิดแล้ว</span><em class="cn" id="n-done"></em></button>
     <button class="nv" data-v="unfix"><span class="ic">🚫</span><span>เคสที่แก้ไม่ได้</span><em class="cn" id="n-unfix"></em></button>
+    <button class="nv" data-v="cancel"><span class="ic">🗑️</span><span>เคสที่ยกเลิก</span><em class="cn" id="n-cancel"></em></button>
 
     <div class="grp">จัดการ</div>
     <button class="nv" data-v="entry"><span class="ic">➕</span><span>เปิดเคสใหม่</span></button>
     <button class="nv" data-v="tech"><span class="ic">👷</span><span>ภาระงานช่าง</span></button>
 
+    <div class="grp">อื่นๆ (ไม่เกี่ยวกับงานซ่อม)</div>
+    <button class="nv" data-v="links"><span class="ic">🔗</span><span>ฝากลิงก์</span><em class="cn" id="n-links"></em></button>
+
     <div class="push"></div>
+    <button class="nv fxb" id="fxBtn"><span class="ic">✨</span><span id="fxT">เอฟเฟกต์: เปิด</span><i class="sw"></i></button>
     <div class="docno"><small>เลขที่เอกสารถัดไป · กดเลือกชุด</small><b id="dn"></b><div class="tp"><button data-t="M">M</button><button data-t="MK">MK</button></div></div>
   </aside>
 
@@ -319,6 +394,23 @@ tbody tr[data-id]:hover{background:rgba(79,140,255,.1)}
       <div class="gl wr"><table><thead id="h-unfix"></thead><tbody id="urows"></tbody></table></div>
     </section>
 
+    <section id="v-cancel" hidden>
+      <div class="note" style="--c:#94a3b8">🗑️ <b>เคสที่ยกเลิก</b> — เคสที่ถูกยกเลิก ยังใช้เลขรันเดิมตามปกติ (ไม่ข้าม ไม่ใช้เลขซ้ำ) กด “เปิดเคสใหม่” ถ้าต้องการนำกลับมาทำต่อ</div>
+      <div class="gl wr"><table><thead id="h-cancel"></thead><tbody id="crows"></tbody></table></div>
+    </section>
+
+    <section id="v-links" hidden>
+      <div class="note" style="--c:var(--blue)">🔗 <b>ฝากลิงก์</b> — ที่ฝากลิงก์ทั่วไปสำหรับงานอื่น <b>ไม่เกี่ยวกับงานซ่อม</b> (ไม่นับเป็นเคส ไม่มีเลขรัน)</div>
+      <div class="gl lkf"><h3>➕ ฝากลิงก์ใหม่</h3>
+        <div class="r2"><input id="l_t" placeholder="📝 ชื่อ / หัวข้อ"><input id="l_u" inputmode="url" placeholder="🔗 วางลิงก์ เช่น https://..."></div>
+        <div class="r2"><input id="l_c" list="l_cl" placeholder="🏷️ หมวด (ไม่บังคับ)"><datalist id="l_cl"></datalist><input id="l_by" placeholder="👤 ฝากโดย (ไม่บังคับ)"></div>
+        <textarea id="l_n" style="min-height:60px" placeholder="หมายเหตุ (ไม่บังคับ)"></textarea>
+        <button class="bt" id="l_add">🔗 ฝากลิงก์</button>
+      </div>
+      <div class="tb"><input id="lq" placeholder="🔍 ค้นหาลิงก์ / หมวด / หมายเหตุ"></div>
+      <div class="lkg" id="lkl"></div>
+    </section>
+
     <section id="v-tech" hidden>
       <div class="gl p"><div style="display:flex;gap:10px;flex-wrap:wrap">
         <input id="t_n" placeholder="ชื่อช่างใหม่" style="flex:1;min-width:200px;margin:0">
@@ -358,6 +450,7 @@ tbody tr[data-id]:hover{background:rgba(79,140,255,.1)}
 ═══════════════════════════════════════════════════════════ */
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
+const FX = {on:(()=>{try{const v=localStorage.getItem('mt2_fx');return v===null?!matchMedia('(prefers-reduced-motion:reduce)').matches:v!=='0'}catch(e){return true}})()};
 const LATE = 150;                                   // นาที ก่อนนับว่าล่าช้า
 const TPL  = $('#tpl').textContent.trim();
 
@@ -366,6 +459,7 @@ const ST = {                                        // สถานะเคส
   doing: ['กำลังซ่อม',  '#4f8cff'],
   done : ['ปิดแล้ว',    '#34d399'],
   unfix: ['แก้ไม่ได้',  '#fb923c'],
+  cancel:['ยกเลิก',     '#94a3b8'],
 };
 const PR = {'ปกติ':'#8b98c4','ด่วน':'#fb923c','ด่วนมาก':'#fb5a7a'};
 
@@ -376,11 +470,13 @@ const PAGES = {
   late : ['เคสล่าช้า',        'เคสที่ค้างเกิน '+LATE+' นาที ต้องรีบจัดการ'],
   done : ['เคสที่ปิดแล้ว',    'งานซ่อมที่เสร็จสมบูรณ์'],
   unfix: ['เคสที่แก้ไม่ได้',  'งานที่ซ่อมไม่สำเร็จ พร้อมสาเหตุ'],
+  cancel:['เคสที่ยกเลิก',    'เคสที่ถูกยกเลิก — ยังใช้เลขรันเดิม ไม่ข้ามเลข'],
+  links: ['ฝากลิงก์',         'ที่ฝากลิงก์สำหรับงานอื่น ไม่เกี่ยวกับงานซ่อม'],
   tech : ['ภาระงานช่าง',      'จัดการรายชื่อและดูงานของช่างแต่ละคน'],
   entry: ['เปิดเคสใหม่',      'บันทึกงานใหม่ + สร้างฟอร์ม Excel'],
 };
 /* เคสที่ปิดแล้ว/แก้ไม่ได้ จะถูกย้ายไปหน้าไหน */
-const DEST = {done:'done', unfix:'unfix', reopen:'table', open:'table'};
+const DEST = {done:'done', unfix:'unfix', cancel:'cancel', reopen:'table', open:'table'};
 
 const pad  = n => String(n).padStart(4,'0');
 const esc  = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -398,18 +494,67 @@ const bdg    = s => `<span class="bd" style="--c:${ST[s][1]}">${ST[s][0]}</span>
 const byId   = id => db.cases.find(x=>x.id===id);
 
 const toast = m => {const t=$('#ts');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2600)};
-const countUp = (el,v) => {const s=performance.now();(function f(n){const p=Math.min(1,(n-s)/700);el.textContent=Math.round(v*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(s)};
+const countUp = (el,v) => {if(!FX.on){el.textContent=Math.round(v);return} const s=performance.now();(function f(n){const p=Math.min(1,(n-s)/700);el.textContent=Math.round(v*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(s)};
 
 /* ═══════════════════════════════════════════════════════════
    B. STORE  (localStorage)
 ═══════════════════════════════════════════════════════════ */
-let db = {cases:[], techs:[], next:1, nextMK:1, type:'M'};
+let db = {cases:[], techs:[], links:[], next:1, nextMK:1, type:'M'};
 try{ db = Object.assign(db, JSON.parse(localStorage.getItem('mt2_db')||'{}')) }catch(e){}
 const save = () => { try{ localStorage.setItem('mt2_db', JSON.stringify(db)) }catch(e){} };
 
 /* ═══════════════════════════════════════════════════════════
    C. NAVIGATION
 ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   B2. FX  (อนุภาค / คอนเฟตติ / ประกาย + ปุ่มปิดเอฟเฟกต์ทั้งหมด)
+═══════════════════════════════════════════════════════════ */
+const FXS=(()=>{
+  const cv=$('#fxc'), x=cv.getContext('2d'), R=(a,b)=>a+Math.random()*(b-a);
+  let P=[], run=false, W=0, H=0, last=0;
+  const rs=()=>{const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;x.setTransform(d,0,0,d,0,0)};
+  rs(); addEventListener('resize',rs);
+  function tick(n){
+    const dt=Math.min(.04,(n-last)/1000); last=n; x.clearRect(0,0,W,H);
+    P=P.filter(p=>(p.l-=dt)>0 && p.y<H+40);
+    for(const p of P){
+      p.vy+=p.g*dt; p.vx*=p.dr; p.x+=p.vx*dt; p.y+=p.vy*dt; p.a+=p.va*dt;
+      x.globalAlpha=Math.max(0,Math.min(1,p.l/p.t*1.6)); x.fillStyle=p.c;
+      if(p.sq){x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillRect(-p.s,-p.s*.5,p.s*2,p.s);x.restore()}
+      else{x.beginPath();x.arc(p.x,p.y,p.s,0,6.283);x.fill()}
+    }
+    x.globalAlpha=1;
+    if(P.length) requestAnimationFrame(tick); else {run=false;x.clearRect(0,0,W,H)}
+  }
+  function add(a){ if(!FX.on) return; P.push(...a); if(P.length>400) P.splice(0,P.length-400); if(!run){run=true;last=performance.now();requestAnimationFrame(tick)} }
+  const mk=o=>Object.assign({x:0,y:0,vx:0,vy:0,g:0,dr:1,a:0,va:0,s:2,l:1,t:1,c:'#fff',sq:false},o);
+  const PAL=['#4f8cff','#a855f7','#fbbf24','#34d399','#fb5a7a','#fb923c'];
+  return {
+    clear(){P=[];x.clearRect(0,0,W,H)},
+    burst(px,py,c,n=18){ add(Array.from({length:n},()=>{const a=R(0,6.283),v=R(60,260),l=R(.45,.9);
+      return mk({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:260,dr:.96,s:R(1.5,3.2),l,t:l,c:c||PAL[Math.random()*6|0]})})) },
+    confetti(c,n=90){ const cols=c?[c,'#fff','#fbbf24','#a855f7','#4f8cff']:PAL; add(Array.from({length:n},()=>{const l=R(1.6,3);
+      return mk({x:R(0,W),y:R(-30,-5),vx:R(-60,60),vy:R(60,220),g:160,dr:.995,s:R(3,6),a:R(0,6.28),va:R(-8,8),l,t:l,c:cols[Math.random()*cols.length|0],sq:true})})) },
+    spark(px,py){ const l=R(.5,.9); add([mk({x:px,y:py,vx:R(-25,25),vy:R(-30,10),g:40,s:R(1,2.4),l,t:l,c:PAL[Math.random()*6|0]})]) }
+  };
+})();
+let _sp=0;
+addEventListener('pointermove',e=>{ if(!FX.on||e.pointerType==='touch') return; const n=performance.now(); if(n-_sp<45) return; _sp=n; FXS.spark(e.clientX,e.clientY) });
+document.addEventListener('click',e=>{
+  if(!FX.on||!(e.clientX||e.clientY)) return;
+  const b=e.target.closest('button,a.ab'); if(!b||b.id==='fxBtn') return;
+  FXS.burst(e.clientX,e.clientY,null,14);
+});
+function setFx(on,quiet){
+  FX.on=on; try{localStorage.setItem('mt2_fx',on?'1':'0')}catch(e){}
+  document.documentElement.classList.toggle('nofx',!on); document.body.classList.toggle('nofx',!on);
+  $('#fxBtn').classList.toggle('fxon',on); $('#fxT').textContent='เอฟเฟกต์: '+(on?'เปิด':'ปิด');
+  if(window.skyOn) skyOn(on);
+  if(!on) FXS.clear();
+  if(!quiet) toast(on?'✨ เปิดเอฟเฟกต์แล้ว':'ปิดเอฟเฟกต์ทั้งหมดแล้ว');
+}
+$('#fxBtn').onclick=()=>setFx(!FX.on);
+
 let cur = 'dash';
 function go(v){
   cur = v;
@@ -419,10 +564,10 @@ function go(v){
   $('#pgS').textContent = PAGES[v][1];
   $('#goNew').style.display = v==='entry' ? 'none' : '';
   VIEWS[v]();
-  scrollTo({top:0,behavior:'smooth'});
+  scrollTo({top:0,behavior:FX.on?'smooth':'auto'});
 }
 const render = () => VIEWS[cur]();
-$$('.nv').forEach(b => b.onclick = () => go(b.dataset.v));
+$$('.nv[data-v]').forEach(b => b.onclick = () => go(b.dataset.v));
 $('#goNew').onclick = () => go('entry');
 $$('.tp button').forEach(b=>b.onclick=()=>{db.type=b.dataset.t;save();head();toast('เปลี่ยนเป็นชุด '+db.type)});
 
@@ -430,17 +575,20 @@ $$('.tp button').forEach(b=>b.onclick=()=>{db.type=b.dataset.t;save();head();toa
 function head(){
   const cs=db.cases, o=cs.filter(isOpen).length, l=cs.filter(isLate).length,
         u=cs.filter(c=>isOpen(c)&&c.pri!=='ปกติ').length,
-        dn=cs.filter(c=>c.status==='done').length, uf=cs.filter(c=>c.status==='unfix').length;
+        dn=cs.filter(c=>c.status==='done').length, uf=cs.filter(c=>c.status==='unfix').length, cx=cs.filter(c=>c.status==='cancel').length;
   $('#chips').innerHTML =
     `<div class="chip"><b>${cs.length}</b>เคสทั้งหมด</div>
      <div class="chip a"><b>${o}</b>ยังไม่ปิด</div>
      <div class="chip g"><b>${dn}</b>ปิดแล้ว</div>
      <div class="chip o"><b>${uf}</b>แก้ไม่ได้</div>
+     <div class="chip c"><b>${cx}</b>ยกเลิก</div>
      <div class="chip r"><b>${u}</b>ด่วน/ด่วนมาก ค้าง</div>`;
   $('#n-table').textContent = cs.length||'';
   $('#n-late').textContent  = l||'';
   $('#n-done').textContent  = dn||'';
   $('#n-unfix').textContent = uf||'';
+  $('#n-cancel').textContent = cx||'';
+  $('#n-links').textContent = (db.links||[]).length||'';
   $('#dn').textContent = docNo(db.type==='MK'?db.nextMK:db.next, Date.now(), db.type);
   $$('.tp button').forEach(b=>b.classList.toggle('on',b.dataset.t===db.type));
 }
@@ -463,13 +611,15 @@ const COL = {
   took : ['ใช้เวลา',           c => fm(age(c))],
   res  : ['ผลการดำเนินการ',    c => c.result ? short(c.result,70) : '<span class="mu">—</span>'],
   why  : ['สาเหตุที่แก้ไม่ได้', c => c.result ? short(c.result,80) : '<span class="mu">ไม่ได้ระบุ</span>'],
+  cwhy : ['เหตุผลที่ยกเลิก',   c => c.result ? short(c.result,80) : '<span class="mu">ไม่ได้ระบุ</span>'],
   act  : ['จัดการ',            c => rowActions(c)],
 };
 function rowActions(c){
   if(isOpen(c)) return `<div class="acts">
     ${c.status==='wait' ? `<button class="ab go" data-a="start" data-id="${c.id}">▶ เริ่มซ่อม</button>` : ''}
     <button class="ab ok" data-a="done"  data-id="${c.id}">✔ ปิดเคส</button>
-    <button class="ab no" data-a="unfix" data-id="${c.id}">✖ แก้ไม่ได้</button></div>`;
+    <button class="ab no" data-a="unfix" data-id="${c.id}">✖ แก้ไม่ได้</button>
+    <button class="ab cx" data-a="cancel" data-id="${c.id}">⊘ ยกเลิก</button></div>`;
   return `<div class="acts"><button class="ab re" data-a="reopen" data-id="${c.id}">↺ เปิดเคสใหม่</button></div>`;
 }
 function fillTable(headId, bodyId, cols, list, emptyMsg){
@@ -503,6 +653,7 @@ const VIEWS = {
       ['แก้ไม่ได้',cs.filter(c=>c.status==='unfix').length,'เคส','#fb923c'],
       ['เวลาซ่อมเฉลี่ย',avg,'','#a855f7'],
       ['ล่าช้าเกิน '+LATE+' นาที',cs.filter(isLate).length,'เคส','#fb5a7a'],
+      ['ยกเลิก',cs.filter(c=>c.status==='cancel').length,'เคส','#94a3b8'],
     ];
     $('#kp').innerHTML = K.map(k=>`<div class="gl k" style="--c:${k[3]}"><span>${k[0]}</span><b>0</b><em>${k[2]}</em></div>`).join('');
     [...$('#kp').children].forEach((e,i)=>{const b=e.querySelector('b'); i===4 ? b.textContent=fm(K[4][1]) : countUp(b,K[i][1])});
@@ -588,6 +739,59 @@ const VIEWS = {
     $('#e_tech').onchange = () => newTech($('#e_tech'),'');
   },
 };
+VIEWS.cancel = () => {
+  head();
+  const rs=db.cases.filter(c=>c.status==='cancel').sort((a,b)=>b.doneAt-a.doneAt);
+  fillTable('#h-cancel','#crows',['no','det','whoS','tech','closed','cwhy','act'],rs,'ยังไม่มีเคสที่ยกเลิก');
+};
+
+/* ---------- ฝากลิงก์ (แยกจากงานซ่อม) ---------- */
+const normUrl = s => { s=s.trim(); if(!s) return ''; if(!/^[a-z][a-z0-9+.-]*:/i.test(s)) s='https://'+s;
+  try{ const u=new URL(s); return /^https?:$/.test(u.protocol) ? u.href : '' }catch(e){ return '' } };
+VIEWS.links = () => {
+  head();
+  const q=$('#lq').value.trim().toLowerCase();
+  $('#l_cl').innerHTML=[...new Set(db.links.map(l=>l.cat).filter(Boolean))].map(c=>`<option value="${esc(c)}">`).join('');
+  const rs=db.links.filter(l=>!q||(l.title+l.url+l.note+l.cat+l.by).toLowerCase().includes(q))
+    .sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)||b.at-a.at);
+  $('#lkl').innerHTML = rs.length ? rs.map(l=>{
+    let host=''; try{host=new URL(l.url).hostname}catch(e){}
+    return `<div class="gl lk${l.pin?' pin':''}">
+      <b>${l.pin?'📌 ':''}${esc(l.title)}</b>
+      ${l.cat?`<span class="tag">${esc(l.cat)}</span>`:''}
+      <div class="u">${esc(host||l.url)}</div>
+      ${l.note?`<p>${esc(l.note)}</p>`:''}
+      <div class="mu">${l.by?'👤 '+esc(l.by)+' · ':''}${tstr(l.at)}</div>
+      <div class="acts">
+        <a class="ab op" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">↗ เปิด</a>
+        <button class="ab cp" data-k="cp" data-id="${l.id}">⧉ คัดลอก</button>
+        <button class="ab pn" data-k="pn" data-id="${l.id}">${l.pin?'ถอนปัก':'📌 ปัก'}</button>
+        <button class="ab dl" data-k="dl" data-id="${l.id}">ลบ</button>
+      </div></div>`;
+  }).join('') : '<div class="em" style="grid-column:1/-1">ยังไม่มีลิงก์ที่ฝากไว้</div>';
+};
+$('#lq').oninput = VIEWS.links;
+$('#l_add').onclick = () => {
+  const title=$('#l_t').value.trim(), url=normUrl($('#l_u').value);
+  if(!$('#l_u').value.trim()){ toast('กรุณาวางลิงก์'); $('#l_u').focus(); return }
+  if(!url){ toast('ลิงก์ไม่ถูกต้อง (รองรับ http / https)'); $('#l_u').focus(); return }
+  db.links.unshift({id:Date.now(),title:title||(()=>{try{return new URL(url).hostname}catch(e){return url}})(),url,
+    cat:$('#l_c').value.trim(),by:$('#l_by').value.trim(),note:$('#l_n').value.trim(),at:Date.now(),pin:false});
+  save(); ['t','u','c','by','n'].forEach(i=>$('#l_'+i).value='');
+  VIEWS.links(); toast('🔗 ฝากลิงก์แล้ว'); FXS.confetti('#4f8cff',50);
+};
+$('#lkl').onclick = e => {
+  const b=e.target.closest('[data-k]'); if(!b) return;
+  const l=db.links.find(x=>x.id===+b.dataset.id); if(!l) return;
+  if(b.dataset.k==='cp'){
+    (navigator.clipboard ? navigator.clipboard.writeText(l.url) : Promise.reject()).then(()=>toast('คัดลอกลิงก์แล้ว'),()=>{
+      const t=document.createElement('textarea'); t.value=l.url; document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');toast('คัดลอกลิงก์แล้ว')}catch(er){toast('คัดลอกไม่สำเร็จ')} t.remove() });
+  }
+  if(b.dataset.k==='pn'){ l.pin=!l.pin; save(); VIEWS.links() }
+  if(b.dataset.k==='dl' && confirm('ลบลิงก์นี้?')){ db.links=db.links.filter(x=>x!==l); save(); VIEWS.links(); head() }
+};
+
 $('#q').oninput = VIEWS.table;
 $('#sf').onchange = VIEWS.table;
 $('#t_add').onclick = () => {
@@ -613,7 +817,7 @@ function newTech(sel,old){
 function act(a,id){
   const c=byId(id); if(!c) return;
   if(a==='start'){ c.status='doing'; save(); head(); render(); toast('▶ เริ่มซ่อม '+lab(c)); }
-  if(a==='done' || a==='unfix') closeDialog(c,a);
+  if(a==='done' || a==='unfix' || a==='cancel') closeDialog(c,a);
   if(a==='reopen') reopenCase(c);
 }
 
@@ -639,25 +843,30 @@ $('#e_save').onclick = () => {
 
 /* ---- หน้าต่างปิดเคส (บอกชัดว่าเคสจะไปอยู่ที่ไหน) ---- */
 const REASONS=['อะไหล่หมด / สั่งไม่ได้','เกินขีดความสามารถของช่าง','ต้องส่งซ่อมภายนอก','อุปกรณ์ชำรุดหนัก ไม่คุ้มซ่อม','หมดอายุการใช้งาน'];
+const CREASONS=['แจ้งซ้ำ / เคสซ้ำ','ผู้แจ้งยกเลิกเอง','แจ้งผิดหน่วยงาน','ใช้งานได้ปกติแล้ว','ไม่ใช่งานซ่อม'];
+const CD={
+  done  :{col:'#34d399',dest:'✅ เคสที่ปิดแล้ว',  ttl:'✔ ปิดเคส — ซ่อมเสร็จ',  lab:'ผลการดำเนินการ (ไม่บังคับ)',            ph:'เช่น เปลี่ยนอะไหล่ ทดสอบใช้งานปกติแล้ว', ok:'ยืนยัน: ปิดเคส',            btn:'x', req:false, qk:[]},
+  unfix :{col:'#fb923c',dest:'🚫 เคสที่แก้ไม่ได้', ttl:'🚫 ปิดเคส — แก้ไม่ได้', lab:'สาเหตุที่แก้ไม่ได้ (จำเป็นต้องกรอก)', ph:'ระบุสาเหตุ…',                              ok:'ยืนยัน: ปิดเคสแก้ไม่ได้',  btn:'o', req:true,  qk:REASONS},
+  cancel:{col:'#94a3b8',dest:'🗑️ เคสที่ยกเลิก',  ttl:'⊘ ยกเลิกเคส',           lab:'เหตุผลที่ยกเลิก (ไม่บังคับ)',           ph:'เช่น แจ้งซ้ำ / ผู้แจ้งยกเลิกเอง',         ok:'ยืนยัน: ยกเลิกเคส',        btn:'c', req:false, qk:CREASONS},
+};
 function closeDialog(c,type){
-  const un = type==='unfix', col = un?'#fb923c':'#34d399', destName = un?'🚫 เคสที่แก้ไม่ได้':'✅ เคสที่ปิดแล้ว';
+  const k=CD[type];
   $('#md').innerHTML = `
-    <h3 style="color:${col}">${un?'🚫 ปิดเคส — แก้ไม่ได้':'✔ ปิดเคส — ซ่อมเสร็จ'}<button class="bt s g" id="m_x">✕</button></h3>
+    <h3 style="color:${k.col}">${k.ttl}<button class="bt s g" id="m_x">✕</button></h3>
     <div class="sum"><b>${lab(c)}</b> · ${esc(c.who)}<div class="mu">${esc(c.det.slice(0,90))}</div></div>
-    <div class="where"><span class="ar">👉</span><div>ปิดแล้วเคสจะย้ายไปที่<br>เมนูซ้ายมือ ➜ <b>${destName}</b></div></div>
-    <label class="f">${un?'สาเหตุที่แก้ไม่ได้ (จำเป็นต้องกรอก)':'ผลการดำเนินการ (ไม่บังคับ)'}</label>
-    ${un?`<div class="qk">${REASONS.map(r=>`<button type="button">${r}</button>`).join('')}</div>`:''}
-    <textarea id="c_res" placeholder="${un?'ระบุสาเหตุ…':'เช่น เปลี่ยนอะไหล่ ทดสอบใช้งานปกติแล้ว'}">${esc(c.result)}</textarea>
-    <div class="bar"><button class="bt s g" id="c_no">ยกเลิก</button>
-      <button class="bt s ${un?'o':'x'}" id="c_ok">${un?'ยืนยัน: ปิดเคสแก้ไม่ได้':'ยืนยัน: ปิดเคส'}</button></div>`;
+    <div class="where"><span class="ar">👉</span><div>เคสจะย้ายไปที่<br>เมนูซ้ายมือ ➜ <b>${k.dest}</b>${type==='cancel'?`<div class="mu">เลขที่ ${lab(c)} ยังคงเดิม ไม่ถูกนำไปใช้ซ้ำ</div>`:''}</div></div>
+    <label class="f">${k.lab}</label>
+    ${k.qk.length?`<div class="qk">${k.qk.map(r=>`<button type="button">${r}</button>`).join('')}</div>`:''}
+    <textarea id="c_res" placeholder="${k.ph}">${esc(c.result)}</textarea>
+    <div class="bar"><button class="bt s g" id="c_no">${type==='cancel'?'ย้อนกลับ':'ยกเลิก'}</button>
+      <button class="bt s ${k.btn}" id="c_ok">${k.ok}</button></div>`;
   $('#ov').classList.add('on');
-  /* ไฮไลต์เมนูปลายทาง */
   $$('.nv').forEach(b=>b.classList.toggle('target', b.dataset.v===DEST[type]));
   $$('.qk button').forEach(b=>b.onclick=()=>{$('#c_res').value=b.textContent;$('#c_res').focus()});
   $('#m_x').onclick = $('#c_no').onclick = closeModal;
   $('#c_ok').onclick = () => {
     const r=$('#c_res').value.trim();
-    if(un && !r){ toast('กรุณาระบุสาเหตุที่แก้ไม่ได้'); $('#c_res').focus(); return }
+    if(k.req && !r){ toast('กรุณาระบุสาเหตุ'); $('#c_res').focus(); return }
     c.status=type; c.result=r; c.doneAt=Date.now(); save();
     closeModal(); head(); render();
     celebrate(type,c);
@@ -699,9 +908,9 @@ function edit(id){
         : `<input value="${ST[c.status][0]}" disabled>`}</div>
     </div>
     <label class="f">ความเร่งด่วน</label><select id="m_r">${Object.keys(PR).map(k=>`<option ${k===c.pri?'selected':''}>${k}</option>`).join('')}</select>
-    <label class="f">${c.status==='unfix'?'สาเหตุที่แก้ไม่ได้':'ผลการดำเนินการ'}</label><textarea id="m_o" style="min-height:60px">${esc(c.result)}</textarea>
+    <label class="f">${c.status==='unfix'?'สาเหตุที่แก้ไม่ได้':c.status==='cancel'?'เหตุผลที่ยกเลิก':'ผลการดำเนินการ'}</label><textarea id="m_o" style="min-height:60px">${esc(c.result)}</textarea>
     <div class="big">${open
-      ? `<button class="bt x" id="m_done">✔ ปิดเคส (ซ่อมเสร็จ)</button><button class="bt o" id="m_unfix">✖ ปิดเคส (แก้ไม่ได้)</button>`
+      ? `<button class="bt x" id="m_done">✔ ปิดเคส (ซ่อมเสร็จ)</button><button class="bt o" id="m_unfix">✖ ปิดเคส (แก้ไม่ได้)</button><button class="bt c" id="m_cancel" style="grid-column:1/-1">⊘ ยกเลิกเคส (เลขที่ ${lab(c)} ยังคงเดิม)</button>`
       : `<button class="bt" id="m_re" style="grid-column:1/-1">↺ เปิดเคสใหม่</button>`}</div>
     <div class="bar"><button class="bt s d" id="m_del">ลบ</button><button class="bt s x" id="m_xl">📥 Excel</button><button class="bt s" id="m_ok">บันทึก</button></div>`;
   $('#ov').classList.add('on');
@@ -720,6 +929,7 @@ function edit(id){
   if(open){
     $('#m_done').onclick  = () => { apply(); closeDialog(c,'done')  };
     $('#m_unfix').onclick = () => { apply(); closeDialog(c,'unfix') };
+    $('#m_cancel').onclick = () => { apply(); closeDialog(c,'cancel') };
   } else {
     $('#m_re').onclick = () => { apply(); closeModal(); reopenCase(c) };
   }
@@ -730,6 +940,7 @@ function edit(id){
    H. MINI NOTICE  (แจ้งผล + บอกว่าเคสอยู่ที่ไหน)
 ═══════════════════════════════════════════════════════════ */
 const CELE = {
+  cancel: {c:'#94a3b8', i:'⊘', t:'ยกเลิกเคส',            where:'🗑️ เคสที่ยกเลิก'},
   done  : {c:'#34d399', i:'✔', t:'ปิดเคส',               where:'✅ เคสที่ปิดแล้ว'},
   unfix : {c:'#fb923c', i:'✖', t:'ปิดเคส (แก้ไม่ได้)',   where:'🚫 เคสที่แก้ไม่ได้'},
   open  : {c:'#4f8cff', i:'+', t:'เปิดเคสใหม่',          where:'📋 Data Table'},
@@ -742,6 +953,7 @@ function celebrate(type,c){
     <div><b>${k.t} ${lab(c)} สำเร็จ</b><div class="mu">อยู่ที่ เมนูซ้าย ➜ ${k.where}</div></div>
     <button id="p_go">ไปดู</button></div>`;
   $('#pop').classList.add('on');
+  FXS.confetti(k.c, type==='done'||type==='open' ? 110 : type==='reopen' ? 60 : 45);
   const n=$(`.nv[data-v="${dest}"]`); n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump');
   $('#p_go').onclick = () => { $('#pop').classList.remove('on'); go(dest) };
   clearTimeout(popTimer); popTimer=setTimeout(()=>$('#pop').classList.remove('on'),5000);
@@ -777,7 +989,7 @@ async function xlsx(c){
     set('A11','ประสงค์ใช้งานระบบ :  [ ✓ ] ซ่อมบำรุง                [  ] ขอใช้บริการอื่น _______________________');
     set('A12','ระดับการใช้งาน :          [ ✓ ] พนักงานทั่วไป           [  ] ผู้จัดการแผนก          [  ] ผู้บริหาร           [  ] ผู้ดูแลระบบ');
     wrap(c.det,82).slice(0,5).forEach((t,i)=>set('A'+(16+i),t,L));
-    const res = c.status==='unfix' && c.result ? 'แก้ไม่ได้: '+c.result : c.result;
+    const res = c.status==='unfix' && c.result ? 'แก้ไม่ได้: '+c.result : c.status==='cancel' ? 'ยกเลิก'+(c.result?': '+c.result:'') : c.result;
     const r=wrap(res,82)[0]; if(r) set('A22',r,L);
     set('A25','('+nm+')'); set('A26','วันที่ '+dstr(c.at));
     if(c.tech){ set('G25','('+c.tech+')'); set('G26','วันที่ '+dstr(c.at)) }
@@ -795,7 +1007,7 @@ async function xlsx(c){
 ═══════════════════════════════════════════════════════════ */
 (function scene(){
   const cv=$('#sky'), x=cv.getContext('2d'), rnd=(a,b)=>a+Math.random()*(b-a);
-  const still=false; /* เคลื่อนไหวเสมอ */
+  const still=false; let running=true, raf=0, tm=0;
   let W,H,gy,stars,back,front,flies,shoots=[],nextShoot=1.5,gustNow=.5;
 
   const farHill=v=>gy-70+Math.sin(v*.0028+2)*36+Math.sin(v*.009)*10;
@@ -926,6 +1138,7 @@ async function xlsx(c){
 
   let last=0;
   function frame(ms){
+    if(!running) return;
     const t=ms/1000, dt=Math.min(.05,t-last); last=t;
     const gust=.5+.5*Math.sin(t*.4)*Math.sin(t*.13+1); gustNow=gust;
     sky(t); if(!still) shooting(dt);
@@ -934,15 +1147,18 @@ async function xlsx(c){
     family(t,gust);
     grass(front,1,()=>H+4,t,gust);
     glow(t,still?0:dt);
-    if(!still && !document.hidden) requestAnimationFrame(frame); else if(!still) setTimeout(()=>requestAnimationFrame(frame),500);
+    if(!running) return;
+    if(!document.hidden) raf=requestAnimationFrame(frame); else tm=setTimeout(()=>{raf=requestAnimationFrame(frame)},500);
   }
   let rz; addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{resize();if(still)frame(0)},150)});
-  resize(); requestAnimationFrame(frame);
+  resize(); raf=requestAnimationFrame(frame);
+  window.skyOn=v=>{ if(v===running) return; running=v; cancelAnimationFrame(raf); clearTimeout(tm); if(v){ last=performance.now()/1000; raf=requestAnimationFrame(frame) } };
 })();
 
 /* ═══════════════════════════════════════════════════════════
    J. START
 ═══════════════════════════════════════════════════════════ */
+setFx(FX.on,true);
 go('dash');
 </script>
 </body>
