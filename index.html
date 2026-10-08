@@ -1425,5 +1425,89 @@ const saveResult=async(c,v)=>{ c.result=v; save(); return '' };
 setFx(FX.on,true);
 AUTH.init();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  /* ★ ใส่ 2 ค่านี้ */
+  const SB_URL = 'https://akqwuwhbdehbnrmliyrp.supabase.co';
+  const SB_KEY = 'sb_publishable_Dla_uAs9YcumNm_vfVQ1Cg_itsWHdx6';
+
+  if(!window.supabase || SB_URL.includes('xxxxxxxx') || SB_KEY.includes('ใส่')){
+    console.warn('ยังไม่ได้ตั้งค่า Supabase'); return;
+  }
+  const sb = window.supabase.createClient(SB_URL, SB_KEY);
+  const TABLE = 'app_state';
+  const KEY = {db:'mt2_db', users:'mt2_users'};
+
+  const canon = v => JSON.stringify(v,(k,x)=>x&&typeof x==='object'&&!Array.isArray(x)
+    ?Object.keys(x).sort().reduce((o,i)=>(o[i]=x[i],o),{}):x);
+  const rd = id => { try{ return JSON.parse(localStorage.getItem(KEY[id])||(id==='users'?'[]':'{}')) }
+    catch(e){ return id==='users'?[]:{} } };
+  const _set = Storage.prototype.setItem;
+  let ready = false; const timers = {};
+
+  /* ส่งข้อมูลขึ้น Supabase (หน่วง 0.4 วินาที รวมการแก้ไขติดกัน) */
+  const push = id => {
+    if(!ready) return;
+    clearTimeout(timers[id]);
+    timers[id] = setTimeout(async()=>{
+      const {error} = await sb.from(TABLE).upsert({id, data:rd(id), updated_at:new Date().toISOString()});
+      if(error){ console.error(error); toast('บันทึกขึ้น Supabase ไม่สำเร็จ: '+error.message) }
+    }, 400);
+  };
+
+  /* ทุกครั้งที่แอปบันทึก → ส่งขึ้น Supabase อัตโนมัติ */
+  Storage.prototype.setItem = function(k,v){
+    _set.call(this,k,v);
+    if(this===localStorage){ if(k==='mt2_db') push('db'); else if(k==='mt2_users') push('users') }
+  };
+
+  const applyDb = d => {
+    Object.assign(db, d);
+    _set.call(localStorage,'mt2_db',JSON.stringify(db));
+    if(document.body.classList.contains('authed')){ head(); render() }
+  };
+
+  const applyUsers = u => {
+    if(canon(u)===canon(rd('users'))) return;
+    _set.call(localStorage,'mt2_users',JSON.stringify(u));
+    location.reload();
+  };
+
+  (async()=>{
+    const {data, error} = await sb.from(TABLE).select('id,data');
+    if(error){ console.error(error); toast('เชื่อม Supabase ไม่สำเร็จ: '+error.message); return }
+    const R = Object.fromEntries((data||[]).map(r=>[r.id,r.data]));
+
+    /* เคส / ช่าง / ลิงก์ */
+    if(R.db && Array.isArray(R.db.cases)){
+      if(canon(R.db)!==canon(db)) applyDb(R.db);
+    } else {
+      await sb.from(TABLE).upsert({id:'db', data:db, updated_at:new Date().toISOString()});
+    }
+
+    /* ผู้ใช้ */
+    const lu = rd('users');
+    if(Array.isArray(R.users) && R.users.length){
+      if(canon(R.users)!==canon(lu)){
+        _set.call(localStorage,'mt2_users',JSON.stringify(R.users));
+        if(!sessionStorage.getItem('sbr')){ sessionStorage.setItem('sbr','1'); location.reload(); return }
+      } else sessionStorage.removeItem('sbr');
+    } else if(lu.length){
+      await sb.from(TABLE).upsert({id:'users', data:lu, updated_at:new Date().toISOString()});
+    }
+
+    ready = true;
+    toast('☁️ เชื่อม Supabase แล้ว');
+
+    /* เครื่องอื่นแก้ → หน้านี้อัปเดตเอง */
+    sb.channel('app_state_ch').on('postgres_changes',{event:'*',schema:'public',table:TABLE},p=>{
+      const r = p.new; if(!r) return;
+      if(r.id==='db' && r.data && Array.isArray(r.data.cases) && canon(r.data)!==canon(db)) applyDb(r.data);
+      if(r.id==='users' && Array.isArray(r.data)) applyUsers(r.data);
+    }).subscribe();
+  })();
+})();
+</script>
 </body>
 </html>
