@@ -482,7 +482,7 @@ body:not(.role-admin) [data-v="users"]{display:none}
 
 <script>
 /* ★ บัญชีแอดมิน (แก้ที่นี่ก่อนใช้งาน) — ผู้ใช้อื่นให้แอดมินเพิ่มในหน้า “ผู้ใช้งาน” */
-window.LOCAL_CFG={ admin:{ u:'admin', p:'admin1234' } };
+window.LOCAL_CFG={ admin:{ u:'cneadminuser', p:'cne123456' } };
 </script>
 <script>
 /* ═══════════════════════════════════════════════════════════
@@ -518,7 +518,7 @@ const PAGES = {
 /* เคสที่ปิดแล้ว/แก้ไม่ได้ จะถูกย้ายไปหน้าไหน */
 const DEST = {done:'done', unfix:'unfix', cancel:'cancel', reopen:'table', open:'table'};
 
-const pad  = n => String(n).padStart(4,'0');
+const pad  = n => String(n).padStart(3,'0');
 const esc  = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const be   = t => new Date(t).getFullYear()+543;
 const lab  = c => (c.type||'M')+pad(c.no);
@@ -1480,9 +1480,13 @@ AUTH.init();
     const R = Object.fromEntries((data||[]).map(r=>[r.id,r.data]));
 
     /* เคส / ช่าง / ลิงก์ */
-    if(R.db && Array.isArray(R.db.cases)){
+   if(R.db && Array.isArray(R.db.cases)){
+      if(!R.db.next || R.db.next < 150) R.db.next = 150;
+      if(!R.db.nextMK || R.db.nextMK < 150) R.db.nextMK = 150;
       if(canon(R.db)!==canon(db)) applyDb(R.db);
     } else {
+      if(!db.next || db.next < 150) db.next = 150;
+      if(!db.nextMK || db.nextMK < 150) db.nextMK = 150;
       await sb.from(TABLE).upsert({id:'db', data:db, updated_at:new Date().toISOString()});
     }
 
@@ -1496,7 +1500,6 @@ AUTH.init();
     } else if(lu.length){
       await sb.from(TABLE).upsert({id:'users', data:lu, updated_at:new Date().toISOString()});
     }
-
     ready = true;
     toast('☁️ เชื่อม Supabase แล้ว');
 
